@@ -60,10 +60,10 @@
          "kind": "ImageStream",
          "apiVersion": "v1",
          "metadata": {
-            "name": "tomcat"
+            "name": "centos"
          },
          "spec": {
-            "dockerImageRepository": "library/tomcat:8.0.15-jre"
+            "dockerImageRepository": "library/centos:centos7"
          }
       },
       {
