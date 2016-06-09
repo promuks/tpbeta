@@ -36,14 +36,14 @@
                   "uri": "https://github.com/ve156354/tpbeta.git",
                   "ref": "master"
                },
-               "contextDir": "tpbeta/tomcat-sti"
+               "contextDir": "tomcat-sti"
             },
             "strategy": {
                "type": "Docker",
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "centos:latest"
+                     "name": "tomcat:8.0.15-jre8"
                   }
                }
             },
@@ -60,10 +60,10 @@
          "kind": "ImageStream",
          "apiVersion": "v1",
          "metadata": {
-            "name": "centos"
+            "name": "tomcat:8.0.15-jre8"
          },
          "spec": {
-            "dockerImageRepository": "library/centos:centos7"
+            "dockerImageRepository": "tomcat:8.0.15-jre8"
          }
       },
       {
