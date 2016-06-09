@@ -60,7 +60,7 @@
          "kind": "ImageStream",
          "apiVersion": "v1",
          "metadata": {
-            "name": "tomcat:8.0.15-jre8"
+            "name": "tomcat"
          },
          "spec": {
             "dockerImageRepository": "tomcat:8.0.15-jre8"
