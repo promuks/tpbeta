@@ -1,0 +1,22 @@
+info:
+  app:
+    name: FmAuth 
+    description: FM Authorization Service
+    version: 0.0.1
+
+
+logging:
+    file: /opt/fme/log/fm-auth-service.log
+    level:
+        org.springframework: 'INFO'
+                
+jsondoc:
+  version: 1.0
+  basePath: http://localhost:9993
+  packages:
+    - net.atpco.fm.auth
+  playgroundEnabled: true
+  displayMethodAs: URI
+
+spring.jmx:
+  enabled: false
