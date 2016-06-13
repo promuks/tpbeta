@@ -9,7 +9,7 @@ ENV CATALINA_HOME /opt/tomcat
 
 
 RUN yum install -y --enablerepo=centosplus \
-    tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
+    wget tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     yum clean all -y && \
     (curl -0 http://www.eu.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | \
     tar -zx -C /usr/local) && \
@@ -20,8 +20,8 @@ RUN yum install -y --enablerepo=centosplus \
     rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
     mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
     ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle && \
-    wget http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-8/v8.0.15/bin/apache-tomcat-8.0.15.tar.gz && \
-	tar -xvf apache-tomcat-8.0.15.tar.gz && \
+    wget http://apache.mirrors.hoobly.com/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz && \
+	tar -xvf apache-tomcat-8.0.35.tar.gz && \
 	rm apache-tomcat*.tar.gz && \
 	mv apache-tomcat* ${CATALINA_HOME} && \
     mkdir -p /opt/openshift && \
