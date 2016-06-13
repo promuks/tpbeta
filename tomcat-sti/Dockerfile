@@ -3,7 +3,7 @@ MAINTAINER Veerendra Akula <veerendra.aakula>
 
 # Install build tools on top of base image
 # Java jdk 8, Maven 3.3, Gradle 2.6
-ENV GRADLE_VERSION 2.6
+#ENV GRADLE_VERSION 2.6
 ENV MAVEN_VERSION 3.3.3
 ENV CATALINA_HOME /opt/tomcat 
 
@@ -15,11 +15,11 @@ RUN yum install -y --enablerepo=centosplus \
     tar -zx -C /usr/local) && \
     mv /usr/local/apache-maven-$MAVEN_VERSION /usr/local/maven && \
     ln -sf /usr/local/maven/bin/mvn /usr/local/bin/mvn && \
-    curl -sL -0 https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
-    unzip /tmp/gradle-${GRADLE_VERSION}-bin.zip -d /usr/local/ && \
-    rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
-    mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
-    ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle && \
+    #curl -sL -0 https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+    #unzip /tmp/gradle-${GRADLE_VERSION}-bin.zip -d /usr/local/ && \
+    #rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
+    #mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
+    #ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle && \
     wget http://apache.mirrors.hoobly.com/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz && \
 	tar -xvf apache-tomcat-8.0.35.tar.gz && \
 	rm apache-tomcat*.tar.gz && \
@@ -37,15 +37,16 @@ RUN npm install -g  bower grunt-cli tsd
 
 #RUN bower install --allow-root  
 
-ENV PATH=/opt/maven/bin/:/opt/gradle/bin/:$PATH
+#ENV PATH=/opt/maven/bin/:/opt/gradle/bin/:$PATH
 
+ENV PATH=/opt/maven/bin/:$PATH
 
 ENV BUILDER_VERSION 1.0
 
-LABEL io.k8s.description="Platform for building Spring Boot applications with maven or gradle" \
-      io.k8s.display-name="Spring Boot builder 1.0" \
+LABEL io.k8s.description="Platform for building Web Application with maven or grunt" \
+      io.k8s.display-name="Tomcat builder 1.0" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,maven-3,gradle-2.6,springboot"
+      io.openshift.tags="builder,maven-3,angular,tomcat"
 
 # TODO (optional): Copy the builder files into /opt/openshift
 # COPY ./<builder_folder>/ /opt/openshift/
