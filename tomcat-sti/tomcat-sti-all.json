@@ -43,7 +43,7 @@
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "tomcat:8.0.15"
+                     "name": "tomcat:8.0.35"
                   }
                }
             },
@@ -63,7 +63,7 @@
             "name": "tomcat"
          },
          "spec": {
-            "dockerImageRepository": "tomcat:8.0.15-jre8"
+            "dockerImageRepository": "tomcat:8.0.35-jre8"
          }
       },
       {
