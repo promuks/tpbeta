@@ -33,7 +33,7 @@
             "source": {
                "type": "Git",
                "git": {
-                  "uri": "https://github.com/ve156354/tpbeta.git",
+                  "uri": "https://github.com/promuks/tpbeta.git",
                   "ref": "master"
                },
                "contextDir": "tomcat-sti"
