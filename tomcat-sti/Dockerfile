@@ -5,6 +5,8 @@ MAINTAINER Veerendra Akula <veerendra.aakula>
 # Java jdk 8, Maven 3.3, Gradle 2.6
 ENV GRADLE_VERSION 2.6
 ENV MAVEN_VERSION 3.3.3
+ENV CATALINA_HOME /opt/tomcat 
+
 
 RUN yum install -y --enablerepo=centosplus \
     tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
@@ -18,6 +20,10 @@ RUN yum install -y --enablerepo=centosplus \
     rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
     mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
     ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle && \
+    wget http://apache-mirror.rbc.ru/pub/apache/tomcat/tomcat-8/v8.0.15/bin/apache-tomcat-8.0.15.tar.gz && \
+	tar -xvf apache-tomcat-8.0.15.tar.gz && \
+	rm apache-tomcat*.tar.gz && \
+	mv apache-tomcat* ${CATALINA_HOME} && \
     mkdir -p /opt/openshift && \
     mkdir -p /opt/app-root/source && chmod -R a+rwX /opt/app-root/source && \
     mkdir -p /opt/s2i/destination && chmod -R a+rwX /opt/s2i/destination && \
