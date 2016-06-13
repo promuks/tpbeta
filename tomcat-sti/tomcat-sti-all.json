@@ -43,7 +43,7 @@
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "centos:7"
+                     "name": "tomcat:8.0.8"
                   }
                }
             },
@@ -63,7 +63,7 @@
             "name": "centos"
          },
          "spec": {
-            "dockerImageRepository": "library/centos:7"
+            "dockerImageRepository": "tomcat:8.0.15-jre8"
          }
       },
       {
