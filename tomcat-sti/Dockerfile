@@ -54,7 +54,9 @@ LABEL io.k8s.description="Platform for building Spring Boot applications with ma
 LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
 COPY .s2i/bin/ /usr/local/sti
 
+RUN chmod -R a+rwX /usr/local/sti 
 RUN chown -R 1001:1001 /opt/openshift
+RUN chown -R 1001:1001 /usr/local/sti
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
