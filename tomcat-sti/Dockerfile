@@ -20,6 +20,10 @@ RUN yum install -y --enablerepo=centosplus \
     rm /tmp/gradle-${GRADLE_VERSION}-bin.zip && \
     mv /usr/local/gradle-${GRADLE_VERSION} /usr/local/gradle && \
     ln -sf /usr/local/gradle/bin/gradle /usr/local/bin/gradle && \
+    wget http://apache.mirrors.hoobly.com/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz && \
+	tar -xvf apache-tomcat-8.0.35.tar.gz && \
+	rm apache-tomcat*.tar.gz && \
+	mv apache-tomcat* ${CATALINA_HOME} && \
     mkdir -p /opt/openshift && \
     mkdir -p /opt/app-root/source && chmod -R a+rwX /opt/app-root/source && \
     mkdir -p /opt/s2i/destination && chmod -R a+rwX /opt/s2i/destination && \
@@ -48,7 +52,7 @@ LABEL io.k8s.description="Platform for building Spring Boot applications with ma
 # COPY Additional files,configurations that we want to ship by default, like a default setting.xml
 
 LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
-COPY .sti/bin/ /usr/local/sti
+COPY .s2i/bin/ /usr/local/sti
 
 RUN chown -R 1001:1001 /opt/openshift
 
