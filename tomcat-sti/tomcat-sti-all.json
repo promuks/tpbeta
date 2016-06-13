@@ -43,7 +43,7 @@
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "tomcat:latest"
+                     "name": "tomcat:8.0"
                   }
                }
             },
