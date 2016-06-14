@@ -55,7 +55,8 @@ LABEL io.k8s.description="Platform for building Web Application with maven or gr
 LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
 COPY .s2i/bin/ /usr/local/sti
 
-RUN chmod -R a+rwX /usr/local/sti 
+#RUN chmod -R a+rwX /usr/local/sti 
+RUN chmod +x /usr/local/sti/assemble /usr/local/sti/run /usr/local/sti/save-artifacts /usr/local/sti/usage
 RUN chown -R 1001:1001 /opt/openshift
 RUN chown -R 1001:1001 /usr/local/sti
 
