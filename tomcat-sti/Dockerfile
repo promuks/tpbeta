@@ -72,9 +72,11 @@ RUN chmod +x /usr/local/sti/assemble /usr/local/sti/run /usr/local/sti/save-arti
 RUN chown -R 1001:1001 /opt/openshift
 RUN chown -R 1001:1001 /usr/local/sti
 
+RUN chmod 777 ${CATALINA_HOME}/webapps
+
 RUN ls -ltr ${CATALINA_HOME}
 
-RUN chmod 777 ${CATALINA_HOME}/webapps
+
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
