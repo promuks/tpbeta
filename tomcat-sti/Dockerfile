@@ -52,7 +52,7 @@ LABEL io.k8s.description="Platform for building Spring Boot applications with ma
 # COPY Additional files,configurations that we want to ship by default, like a default setting.xml
 
 LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
-COPY .s2i/bin/ /usr/local/sti
+COPY .sti/bin/ /usr/local/sti
 
 RUN chown -R 1001:1001 /opt/openshift
 
