@@ -74,7 +74,7 @@ RUN chown -R 1001:1001 /usr/local/sti
 
 RUN ls -ltr ${CATALINA_HOME}
 
-##RUN chmod 777 /usr/local/tomcat/webapps
+RUN chmod 777 ${CATALINA_HOME}/webapps
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
