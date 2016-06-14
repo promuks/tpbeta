@@ -83,29 +83,22 @@ if [ -f "$LOCAL_SOURCE_DIR/pom.xml" ]; then
   fi
 
   popd &> /dev/null
-elif [ -f "$LOCAL_SOURCE_DIR/build.gradle" ]; then
-   echo "Building with gradle. $LOCAL_SOURCE_DIR/build.gradle found."
-
+elif [ -f "$LOCAL_SOURCE_DIR/package.json" ]; then
+   echo "Building Angular App."
    pushd $LOCAL_SOURCE_DIR &> /dev/null
-
-  if [ -z "$BUILDER_ARGS" ]; then
-    export BUILDER_ARGS="build -x test"
-    # TODO: Specify setting file with -c sss
-  fi
-
-  echo "Found gradle.build ... attempting to build with 'gradle -s ${BUILDER_ARGS}'"
-
-  echo "Gradle version:"
-  gradle --version
-
-  # Execute the actual build
-  gradle -s $BUILDER_ARGS
-
-  ERR=$?
-  if [ $ERR -ne 0 ]; then
-    echo "Aborting due to error code $ERR from Gradle build"
-    exit $ERR
-  fi
+   pwd
+   ls -ltr
+   node --version
+   npm install
+   echo "Npm install comeplted."
+   bower --allow-root install
+   echo "Bower install comeplted."
+   tsd install
+   echo "TSD install comeplted."
+   grunt war
+   echo "WAR  comeplted."
+   ls -ltr
+fi
 
   # Copy built artifacts (if any!) from the target/ directory
   # to the $DEPLOY_DIR directory for later deployment
