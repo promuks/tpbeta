@@ -33,13 +33,13 @@ RUN yum install -y --enablerepo=centosplus \
 
 RUN ls -ltr ${CATALINA_HOME}
 
-ADD conf /usr/local/tomcat/conf
-ADD lib /usr/local/tomcat/lib
-ADD properties /usr/local/tomcat/properties
-ADD bin /usr/local/tomcat/bin
-ADD cert /usr/local/tomcat/certs
-RUN chmod +x /usr/local/tomcat/bin/addldapcert.sh
-RUN /usr/local/tomcat/bin/addldapcert.sh
+ADD conf ${CATALINA_HOME}/conf
+ADD lib ${CATALINA_HOME}/lib
+ADD properties ${CATALINA_HOME}/properties
+ADD bin ${CATALINA_HOME}/bin
+ADD cert ${CATALINA_HOME}/certs
+RUN chmod +x ${CATALINA_HOME}/bin/addldapcert.sh
+RUN ${CATALINA_HOME}/bin/addldapcert.sh
 
 
 RUN yum -y update; yum clean all
@@ -72,7 +72,7 @@ RUN chmod +x /usr/local/sti/assemble /usr/local/sti/run /usr/local/sti/save-arti
 RUN chown -R 1001:1001 /opt/openshift
 RUN chown -R 1001:1001 /usr/local/sti
 
-RUN ls -ltr /usr/local/tomcat
+RUN ls -ltr ${CATALINA_HOME}
 
 ##RUN chmod 777 /usr/local/tomcat/webapps
 
