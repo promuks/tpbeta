@@ -30,6 +30,15 @@ RUN yum install -y --enablerepo=centosplus \
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
     
 
+ADD conf /usr/local/tomcat/conf
+ADD lib /usr/local/tomcat/lib
+ADD properties /usr/local/tomcat/properties
+ADD bin /usr/local/tomcat/bin
+ADD cert /usr/local/tomcat/certs
+RUN chmod +x /usr/local/tomcat/bin/addldapcert.sh
+RUN /usr/local/tomcat/bin/addldapcert.sh
+
+
 RUN yum -y update; yum clean all
 RUN yum -y install epel-release; yum clean all
 RUN yum -y install nodejs npm; yum clean all
