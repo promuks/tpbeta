@@ -45,7 +45,7 @@ RUN ${CATALINA_HOME}/bin/addldapcert.sh
 RUN yum -y update; yum clean all
 RUN yum -y install epel-release; yum clean all
 RUN yum -y install nodejs npm; yum clean all
-RUN npm install -g  bower grunt-cli tsd
+RUN npm install -g  bower grunt-cli tsd git
 
 #RUN bower install --allow-root  
 
