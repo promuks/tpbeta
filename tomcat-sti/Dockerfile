@@ -5,7 +5,7 @@ MAINTAINER Veerendra Akula <veerendra.aakula>
 # Java jdk 8, Maven 3.3, Gradle 2.6
 #ENV GRADLE_VERSION 2.6
 ENV MAVEN_VERSION 3.3.3
-ENV CATALINA_HOME /opt/tomcat 
+ENV CATALINA_HOME /usr/local/tomcat 
 
 
 RUN yum install -y --enablerepo=centosplus \
