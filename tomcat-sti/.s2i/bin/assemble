@@ -125,9 +125,9 @@ fi
 
 # As SpringBoot you should only have 1 fat jar
 if [ $(ls /opt/openshift/*.war | wc -l) -eq 1 ]; then
-  mv /opt/openshift/*.war /usr/local/tomcat/webapps
+  mv /opt/openshift/*.war /opt/tomcat/webapps
   ##[ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1 
-  echo "Application jar file is located is  copied /usr/local/tomcat/webapp"
+  echo "Application jar file is located is  copied /opt/tomcat/webapp"
 else
   exit 1
 fi
