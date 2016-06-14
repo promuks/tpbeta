@@ -40,7 +40,7 @@ ARTIFACT_DIR=${ARTIFACT_DIR-target}
 
 function copy_artifacts() {
   if [ -d $LOCAL_SOURCE_DIR/$1 ]; then
-    echo "Copying all JAR artifacts from $LOCAL_SOURCE_DIR/$1 directory into $DEPLOY_DIR for later deployment..."
+    echo "Copying all WAR artifacts from $LOCAL_SOURCE_DIR/$1 directory into $DEPLOY_DIR for later deployment..."
     cp -v $LOCAL_SOURCE_DIR/$1/*.war $DEPLOY_DIR 2> /dev/null
   fi
 }
