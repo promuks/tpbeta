@@ -111,9 +111,6 @@ fi
 #    rm -r "$HOME/.m2/repository"
 #  fi
 
-  popd &> /dev/null
-fi
-
 # Copy (probably binary) artifacts from the deployments/
 # directory to the $DEPLOY_DIR directory for later deployment
 # copy_artifacts "deployments"
