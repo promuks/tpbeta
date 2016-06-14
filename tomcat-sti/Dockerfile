@@ -30,6 +30,9 @@ RUN yum install -y --enablerepo=centosplus \
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
     
 
+
+RUN ls -ltr ${CATALINA_HOME}
+
 ADD conf /usr/local/tomcat/conf
 ADD lib /usr/local/tomcat/lib
 ADD properties /usr/local/tomcat/properties
@@ -71,7 +74,7 @@ RUN chown -R 1001:1001 /usr/local/sti
 
 RUN ls -ltr /usr/local/tomcat
 
-RUN chmod 777 /usr/local/tomcat/webapps
+##RUN chmod 777 /usr/local/tomcat/webapps
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
