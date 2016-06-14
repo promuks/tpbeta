@@ -106,7 +106,7 @@ fi
 
 
   # clean up after maven
-  gradle clean
+
 #  if [ -d "$HOME/.m2/repository" ]; then
 #    rm -r "$HOME/.m2/repository"
 #  fi
