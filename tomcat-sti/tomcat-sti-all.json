@@ -44,9 +44,9 @@
                   "from": {
                      "kind": "ImageStreamTag",
                      "name": "centos:latest"
-                  }
-               },
-               "noCache": true
+                  },
+                  "noCache": true
+               }
             },
             "output": {
                "to": {
