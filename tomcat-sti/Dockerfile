@@ -77,7 +77,9 @@ RUN chmod 777 ${CATALINA_HOME}/webapps
 
 RUN ls -ltr ${CATALINA_HOME}
 
+RUN chown -R 1001:0 ${CATALINA_HOME}
 
+RUN chmod -R ug+rw ${CATALINA_HOME}
 
 # This default user is created in the openshift/base-centos7 image
 USER 1001
