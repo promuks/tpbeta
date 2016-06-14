@@ -41,7 +41,7 @@ ARTIFACT_DIR=${ARTIFACT_DIR-target}
 function copy_artifacts() {
   if [ -d $LOCAL_SOURCE_DIR/$1 ]; then
     echo "Copying all JAR artifacts from $LOCAL_SOURCE_DIR/$1 directory into $DEPLOY_DIR for later deployment..."
-    cp -v $LOCAL_SOURCE_DIR/$1/*.jar $DEPLOY_DIR 2> /dev/null
+    cp -v $LOCAL_SOURCE_DIR/$1/*.war $DEPLOY_DIR 2> /dev/null
   fi
 }
 
@@ -131,7 +131,7 @@ fi
 # fi
 
 # As SpringBoot you should only have 1 fat jar
-if [ $(ls /opt/openshift/*.jar | wc -l) -eq 1 ]; then
+if [ $(ls /opt/openshift/*.war | wc -l) -eq 1 ]; then
   mv /opt/openshift/*.war /usr/local/tomcat/webapps/
   ##[ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1 
   echo "Application jar file is located is  copied /usr/local/tomcat/webapp"
