@@ -1,0 +1,23 @@
+server:
+  port: 9994
+
+info:
+  app:
+    name: TotalPriceClient
+    description: TotalPriceClient Pricing Service
+    version: 0.0.1
+
+logging:
+    file: /opt/fme/log/tp-client.log
+    level:
+        org.springframework: 'INFO'
+        
+jsondoc:
+  version: 1.0
+  basePath: http://testfme01:9994
+  packages:
+    - net.atpco.tp.client
+    - net.atpco.common.model
+  playgroundEnabled: true
+  displayMethodAs: URI
+        

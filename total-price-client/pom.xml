@@ -1,0 +1,602 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.5.RELEASE</version>
+	</parent>
+
+	<groupId>net.atpco.tp.client</groupId>
+	<version>2.1.8.4</version>
+	<packaging>jar</packaging>
+	<artifactId>total-price-client</artifactId>
+	<name>total-price-client</name>
+
+
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.wildfly>8.1.0.Final</version.wildfly>
+		<sonar.clover.reportPath>target/site/clover/clover.xml</sonar.clover.reportPath>
+
+
+		<!-- Reporting plugin versions -->
+		<maven-site-plugin.version>3.0</maven-site-plugin.version>
+		<maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
+		<maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
+		<maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
+		<maven-project-info-reports-plugin.version>2.4</maven-project-info-reports-plugin.version>
+		<maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+		<maven-clover2-plugin.version>4.0.2</maven-clover2-plugin.version>
+
+
+		<!-- Maven -->
+		<version.compiler.plugin>3.0</version.compiler.plugin>
+		<org.apache.maven.plugins.maven-compiler-plugin.version>3.0</org.apache.maven.plugins.maven-compiler-plugin.version>
+		<org.apache.maven.plugins.maven-dependency-plugin.version>2.9</org.apache.maven.plugins.maven-dependency-plugin.version>
+
+		<!-- lombok -->
+		<org.projectlombok.version>1.16.4</org.projectlombok.version>
+
+		<java.source.version>1.8</java.source.version>
+		<sonar.profile>PMD Rule Set JDK1_8</sonar.profile>
+
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Misc: projectlombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${org.projectlombok.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- tag::jetty[] -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.spteringframework.boot</groupId>
+					<artifactId>spring-boot-starter-jetty</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+
+		<!-- end::jetty[] -->
+		<!-- tag::actuator[] -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jsondoc</groupId>
+			<artifactId>spring-boot-starter-jsondoc</artifactId>
+			<version>1.1.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsondoc</groupId>
+			<artifactId>jsondoc-ui-webjar</artifactId>
+			<version>1.1.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- end::actuator[] -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>quartz</artifactId>
+					<groupId>quartz</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.0.CR1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.atpco.common</groupId>
+			<artifactId>faremanagement-common</artifactId>
+			<version>2.1.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.farecompare.atpcore.engines</groupId>
+			<artifactId>farecompare-atpcore-engines-pricing-data</artifactId>
+			<version>7.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.farecompare.bttb</groupId>
+			<artifactId>farecompare-bttb-process-data</artifactId>
+			<version>5.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.farecompare.atpcore</groupId>
+			<artifactId>xxi-atpcore-feed-records-partial-parse</artifactId>
+			<version>7.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.farecompare.framework</groupId>
+			<artifactId>xxi-framework-date-util</artifactId>
+			<version>6.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>1.0.0.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-ejb-client-bom</artifactId>
+			<version>${version.wildfly}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+
+		<!-- Misc: lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.3.1</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<!-- Use it in Local in case of test failures -->
+						<!-- <testFailureIgnore>true</testFailureIgnore>  -->
+						<excludes>
+							<exclude></exclude>
+						</excludes>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.surefire</groupId>
+							<artifactId>surefire-junit47</artifactId>
+							<version>${maven-surefire-plugin.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${maven-surefire-report-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>${maven-project-info-reports-plugin.version}</version>
+					<configuration>
+						<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+						<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>com.atlassian.maven.plugins</groupId>
+					<artifactId>maven-clover2-plugin</artifactId>
+					<version>${maven-clover2-plugin.version}</version>
+				</plugin>
+
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.source.version}</source>
+					<target>${java.source.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<!-- The configuration of the plugin -->
+				<configuration>
+					<finalName>total-price-client</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<!-- Specifies the configuration file of the assembly plugin -->
+					<descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+					</descriptors>
+					<recompressZippedFiles>false</recompressZippedFiles>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.Directory}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>**/version.properties</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>${maven-jxr-plugin.version}</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>${maven-surefire-report-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<version>${maven-clover2-plugin.version}</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<!-- Spring boot repositories -->
+	<repositories>
+		<repository>
+			<id>NMV_SNAPSHOT</id>
+			<url>http://ttdevbld:8081/nexus/content/groups/NMV_SNAPSHOT/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>spring-gemstone-releases</id>
+			<url>http://repo.spring.io/gemstone-release-cache/</url>
+		</repository>
+
+
+		<!-- <repository> <id>spring-snapshots</id> <url>http://repo.spring.io/libs-snapshot</url> 
+			<snapshots> <enabled>true</enabled> </snapshots> </repository> <repository> 
+			<id>jcenter-snapshots</id> <name>jcenter</name> <url>http://oss.jfrog.org/artifactory/oss-snapshot-local/</url> 
+			</repository> -->
+	</repositories>
+
+	<!-- <pluginRepositories> <pluginRepository> <id>spring-snapshots</id> <url>http://repo.spring.io/libs-snapshot</url> 
+		<snapshots> <enabled>true</enabled> </snapshots> </pluginRepository> </pluginRepositories> -->
+
+
+	<profiles>
+		<profile>
+			<id>sonar</id>
+		</profile>
+
+		<profile>
+			<id>clover-report-win</id>
+			<properties>
+				<!-- clover properties -->
+				<clover.coverage.percent>0</clover.coverage.percent>
+				<maven.clover.licenseLocation>C:\Clover\clover.license</maven.clover.licenseLocation>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<configuration>
+							<classpathDependencyExcludes>
+								<classpathDependencyExcludes>com.sun:tools</classpathDependencyExcludes>
+							</classpathDependencyExcludes>
+
+							<testFailureIgnore>true</testFailureIgnore>
+							<skip>false</skip>
+							<useFile>false</useFile>
+							<includes>
+								<include>**/*Spec.java</include>
+								<include>**/Test*.java</include>
+								<include>**/*Test.java</include>
+								<include>**/*TestCase.java</include>
+							</includes>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit47</artifactId>
+								<version>${maven-surefire-plugin.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<version>${maven-clover2-plugin.version}</version>
+						<configuration>
+							<jdk>${jdk.version}</jdk>
+							<targetPercentage>${clover.coverage.percent}</targetPercentage>
+							<generatePdf>true</generatePdf>
+							<generateHtml>true</generateHtml>
+							<generateHistorical>true</generateHistorical>
+							<historydir>${project.basedir}/history/${project.artifact}</historydir>
+							<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
+							<includetestsourceroots>false</includetestsourceroots>
+							<setTestFailureIgnore>true</setTestFailureIgnore>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<flushPolicy>threaded</flushPolicy>
+							<flushInterval>5000</flushInterval>
+						</configuration>
+						<executions>
+							<execution>
+								<id>clover</id>
+								<goals>
+									<goal>setup</goal>
+									<goal>snapshot</goal>
+								</goals>
+							</execution>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>clover</goal>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<version>${maven-clover2-plugin.version}</version>
+						<configuration>
+							<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
+							<methodContexts>
+								<property>(.* )?public .*(get|set|is)[A-Z0-9].*</property>
+								<!-- <private-constructor>(.* )?private +[a-zA-Z0-9_$]+ *\( *\).*</private-constructor> -->
+							</methodContexts>
+							<contextFilters>property</contextFilters>
+						</configuration>
+					</plugin>
+				</plugins>
+			</reporting>
+
+		</profile>
+
+		<profile>
+			<id>CMCloverReport</id>
+			<properties>
+				<!-- clover properties -->
+				<clover.coverage.percent>0</clover.coverage.percent>
+				<maven.clover.licenseLocation>/opt/atpco/clover-ant/lib/clover.license</maven.clover.licenseLocation>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin.version}</version>
+						<configuration>
+							<testFailureIgnore>true</testFailureIgnore>
+							<skip>false</skip>
+							<useFile>false</useFile>
+							<includes>
+								<include>**/*Spec.java</include>
+								<include>**/Test*.java</include>
+								<include>**/*Test.java</include>
+								<include>**/*TestCase.java</include>
+							</includes>
+						</configuration>
+						<dependencies>
+							<dependency>
+								<groupId>org.apache.maven.surefire</groupId>
+								<artifactId>surefire-junit47</artifactId>
+								<version>${maven-surefire-plugin.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<version>${maven-clover2-plugin.version}</version>
+						<configuration>
+							<jdk>${jdk.version}</jdk>
+							<targetPercentage>${clover.coverage.percent}</targetPercentage>
+							<generatePdf>true</generatePdf>
+							<generateHtml>true</generateHtml>
+							<generateHistorical>true</generateHistorical>
+							<historydir>${project.basedir}/history/${project.artifact}</historydir>
+							<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
+							<includetestsourceroots>false</includetestsourceroots>
+							<setTestFailureIgnore>true</setTestFailureIgnore>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+							<flushPolicy>threaded</flushPolicy>
+							<flushInterval>5000</flushInterval>
+						</configuration>
+						<executions>
+							<execution>
+								<id>clover</id>
+								<goals>
+									<goal>setup</goal>
+									<goal>snapshot</goal>
+								</goals>
+							</execution>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>clover</goal>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>com.atlassian.maven.plugins</groupId>
+						<artifactId>maven-clover2-plugin</artifactId>
+						<version>${maven-clover2-plugin.version}</version>
+						<configuration>
+							<licenseLocation>${maven.clover.licenseLocation}</licenseLocation>
+							<methodContexts>
+								<property>(.* )?public .*(get|set|is)[A-Z0-9].*</property>
+								<!-- <private-constructor>(.* )?private +[a-zA-Z0-9_$]+ *\( *\).*</private-constructor> -->
+							</methodContexts>
+							<contextFilters>property</contextFilters>
+						</configuration>
+					</plugin>
+				</plugins>
+			</reporting>
+		</profile>
+
+		<profile>
+			<id>IgnoreProperties</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<excludes>
+								<exclude>**/*.yml</exclude>
+								<exclude>**/*.properties</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>
+

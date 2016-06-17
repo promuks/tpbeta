@@ -1,0 +1,23 @@
+server:
+  port: 9991
+
+info:
+  app:
+    name: AdhocPricing
+    description: Pricing Service
+    version: 0.0.1
+
+logging:
+    file: /opt/fme/log/adhoc-pricing.log
+    level:
+        org.springframework: 'INFO'
+        
+jsondoc:
+  version: 1.0
+  basePath: http://localhost:9991
+  packages:
+    - net.atpco.adhoc.pricing.controller
+    - net.atpco.common.model
+  playgroundEnabled: true
+  displayMethodAs: URI
+        

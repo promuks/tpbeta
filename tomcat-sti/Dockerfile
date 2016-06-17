@@ -33,6 +33,8 @@ RUN yum install -y --enablerepo=centosplus \
 
 RUN ls -ltr ${CATALINA_HOME}
 
+############ TOMCAT ##########################################################
+
 ADD conf ${CATALINA_HOME}/conf
 ADD lib ${CATALINA_HOME}/lib
 ADD properties ${CATALINA_HOME}/properties
@@ -41,6 +43,8 @@ ADD cert ${CATALINA_HOME}/certs
 RUN chmod +x ${CATALINA_HOME}/bin/addldapcert.sh
 RUN ${CATALINA_HOME}/bin/addldapcert.sh
 
+
+############### ANGULAR ##################
 
 RUN yum -y update; yum clean all
 RUN yum -y install epel-release; yum clean all
@@ -74,14 +78,8 @@ RUN chown -R 1001:1001 /opt/openshift
 #RUN chown -R 1001:1001 /usr/local/sti
 
 RUN chmod 777 ${CATALINA_HOME}/webapps
-
-
-
 RUN chown -R 1001:0 ${CATALINA_HOME}
-
 RUN chmod -R ug+rw ${CATALINA_HOME}
-
-
 RUN ls -ltr ${CATALINA_HOME}
 
 # This default user is created in the openshift/base-centos7 image
