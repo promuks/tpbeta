@@ -1,5 +1,5 @@
 
-IMAGE_NAME = pricingui-tomcat
+IMAGE_NAME = tpbeta-tomcat-sti
 
 build:
 	docker build -t $(IMAGE_NAME) .
