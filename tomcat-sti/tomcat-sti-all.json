@@ -50,7 +50,7 @@
             "output": {
                "to": {
                   "kind": "ImageStreamTag",
-                  "name": "atp-tomcat-sti:latest"
+                  "name": "pricingui-tomcat:latest"
                }
             },
             "resources": {}
