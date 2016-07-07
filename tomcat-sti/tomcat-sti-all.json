@@ -33,7 +33,7 @@
             "source": {
                "type": "Git",
                "git": {
-                  "uri": "https://github.com/ve156354/tpbeta.git",
+                  "uri": "https://github.com/promuks/tpbeta.git",
                   "ref": "master"
                },
                "contextDir": "tomcat-sti"
@@ -43,7 +43,7 @@
                "dockerStrategy": {
                   "from": {
                      "kind": "ImageStreamTag",
-                     "name": "centos:latest"
+                     "name": "rhel7.2:latest"
                   },
                   "noCache": true
                }
@@ -51,7 +51,7 @@
             "output": {
                "to": {
                   "kind": "ImageStreamTag",
-                  "name": "tpbeta-tomcat-sti:latest"
+                  "name": "atp-tomcat-sti:latest"
                }
             },
             "resources": {}
@@ -61,10 +61,10 @@
          "kind": "ImageStream",
          "apiVersion": "v1",
          "metadata": {
-            "name": "centos"
+            "name": "rhel7.2"
          },
          "spec": {
-            "dockerImageRepository": "centos:latest"
+            "dockerImageRepository": "rhel7.2:latest"
          }
       },
       {
@@ -79,7 +79,7 @@
                {
                   "name": "latest",
                   "annotations": {
-                     "description": "TP Beta Tomcat STI image",
+                     "description": "Tomcat STI image",
                      "iconClass": "icon-jboss",
                      "tags": "builder,tomcat,java,maven,angular",
                      "supports": "tomcat,java:8,maven:3,angular:2.6",

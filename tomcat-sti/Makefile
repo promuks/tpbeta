@@ -1,4 +1,5 @@
-IMAGE_NAME = springboot-sti
+
+IMAGE_NAME = pricingui-tomcat
 
 build:
 	docker build -t $(IMAGE_NAME) .
@@ -6,5 +7,4 @@ build:
 .PHONY: test
 test:
 	docker build -t $(IMAGE_NAME)-candidate .
-	IMAGE_NAME=$(IMAGE_NAME)-candidate BUILDER=maven test/run
-	IMAGE_NAME=$(IMAGE_NAME)-candidate BUILDER=gradle test/run
+	IMAGE_NAME=$(IMAGE_NAME)-candidate test/run

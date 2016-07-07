@@ -1,4 +1,4 @@
-#!/bin/bash -e
+	#!/bin/bash -e
 #
 # S2I assemble script for the 'springboot-sti' image.
 # The 'assemble' script builds your application source ready to run.
@@ -40,8 +40,8 @@ ARTIFACT_DIR=${ARTIFACT_DIR-target}
 
 function copy_artifacts() {
   if [ -d $LOCAL_SOURCE_DIR/$1 ]; then
-    echo "Copying all WAR artifacts from $LOCAL_SOURCE_DIR/$1 directory into $DEPLOY_DIR for later deployment..."
-    cp -v $LOCAL_SOURCE_DIR/$1/*.war $DEPLOY_DIR 2> /dev/null
+    echo "Copying all JAR artifacts from $LOCAL_SOURCE_DIR/$1 directory into $DEPLOY_DIR for later deployment..."
+    cp -v $LOCAL_SOURCE_DIR/$1/*.jar $DEPLOY_DIR 2> /dev/null
   fi
 }
 
@@ -84,32 +84,21 @@ if [ -f "$LOCAL_SOURCE_DIR/pom.xml" ]; then
 
   popd &> /dev/null
 elif [ -f "$LOCAL_SOURCE_DIR/package.json" ]; then
-   echo "Building Angular App."
+   echo "Building UI with NPM,Bower and Grunt. $LOCAL_SOURCE_DIR/package.json found."
+
    pushd $LOCAL_SOURCE_DIR &> /dev/null
-   pwd
-   ls -ltr
-   node --version
+   
+   cd $LOCAL_SOURCE_DIR
+   nodejs --version
    npm install
-   echo "Npm install comeplted."
    bower --allow-root install
-   echo "Bower install comeplted."
    tsd install
-   echo "TSD install comeplted."
+   npm install grunt-cli
    grunt war
-   echo "WAR  comeplted."
-   ls -ltr
+   cp $LOCAL_SOURCE_DIR/dist/*.war /usr/local/tomcat/webapps
+
+  popd &> /dev/null
 fi
-
-  # Copy built artifacts (if any!) from the target/ directory
-  # to the $DEPLOY_DIR directory for later deployment
-  copy_artifacts build/libs
-
-
-  # clean up after maven
-
-#  if [ -d "$HOME/.m2/repository" ]; then
-#    rm -r "$HOME/.m2/repository"
-#  fi
 
 # Copy (probably binary) artifacts from the deployments/
 # directory to the $DEPLOY_DIR directory for later deployment
@@ -121,10 +110,10 @@ fi
 # fi
 
 # As SpringBoot you should only have 1 fat jar
-if [ $(ls /opt/openshift/*.war | wc -l) -eq 1 ]; then
-  mv /opt/openshift/*.war /usr/local/tomcat/webapps
-  ##[ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1 
-  echo "Application jar file is located is  copied /opt/tomcat/webapp"
+if [ $(ls /opt/openshift/*.jar | wc -l) -eq 1 ]; then
+  mv /opt/openshift/*.jar /opt/openshift/app.jar
+  [ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1 
+  echo "Application jar file is located in /opt/openshift/app.jar"
 else
   exit 1
 fi
