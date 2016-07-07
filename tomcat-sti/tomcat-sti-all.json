@@ -44,7 +44,8 @@
                   "from": {
                      "kind": "ImageStreamTag",
                      "name": "rhel7.2:latest"
-                  }
+                  },
+                    "noCache": true
                }
             },
             "output": {
