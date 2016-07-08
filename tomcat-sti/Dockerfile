@@ -60,7 +60,10 @@ RUN chown -R 1001:1001 /opt/openshift
 RUN chown -R 1001:0 /usr/local/tomcat
 
 RUN chmod -R ug+rw /usr/local/tomcat
-
+RUN chmod -R a+rwX /usr/local/sti/assemble
+RUN chmod -R a+rwX /usr/local/sti/run
+RUN chmod -R a+rwX /usr/local/sti/save-artifacts
+RUN chmod -R a+rwX /usr/local/sti/usage
 RUN chmod -R ug+rwx /usr/local/tomcat/bin/addldapcert.sh
 
 RUN /usr/local/tomcat/bin/addldapcert.sh
