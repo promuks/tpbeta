@@ -25,7 +25,8 @@ RUN yum install -y  --enablerepo rhel-7-server-optional-rpms --enablerepo rhel-7
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
 RUN yum -y install git; yum clean all
 RUN git config --global url."https://".insteadOf git://
-
+RUN git config --global user.email "mukul37@gmail.com" 
+RUN git config --global user.name "Mukul"
 #RUN yum -y update; yum clean all
 RUN yum -y install npm; yum clean all
 
