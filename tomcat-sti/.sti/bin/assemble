@@ -109,11 +109,3 @@ fi
 #   cp -v $LOCAL_SOURCE_DIR/configuration/* $ARTIFACTS_HOME
 # fi
 
-# As SpringBoot you should only have 1 fat jar
-if [ $(ls /opt/openshift/*.jar | wc -l) -eq 1 ]; then
-  mv /opt/openshift/*.jar /opt/openshift/app.jar
-  [ ! -f /opt/openshift/app.jar ] && echo "Application could not be properly built." && exit 1 
-  echo "Application jar file is located in /opt/openshift/app.jar"
-else
-  exit 1
-fi
