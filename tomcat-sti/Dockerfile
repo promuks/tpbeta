@@ -65,7 +65,7 @@ RUN chmod -R a+rwX /usr/local/sti/run
 RUN chmod -R a+rwX /usr/local/sti/save-artifacts
 RUN chmod -R a+rwX /usr/local/sti/usage
 RUN chmod -R ug+rwx /usr/local/tomcat/bin/addldapcert.sh
-
+RUN chmod +x /usr/local/sti/assemble /usr/local/sti/run /usr/local/sti/save-artifacts /usr/local/sti/usage
 RUN /usr/local/tomcat/bin/addldapcert.sh
 
 # This default user is created in the openshift/base-centos7 image
