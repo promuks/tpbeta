@@ -89,9 +89,9 @@ elif [ -f "$LOCAL_SOURCE_DIR/package.json" ]; then
    pushd $LOCAL_SOURCE_DIR &> /dev/null
    
    cd $LOCAL_SOURCE_DIR
-   nodejs --version
+   node --version
    npm install
-   bower --allow-root install
+   bower install
    tsd install
    npm install grunt-cli
    grunt build
