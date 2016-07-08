@@ -94,6 +94,7 @@ elif [ -f "$LOCAL_SOURCE_DIR/package.json" ]; then
    bower install
    tsd install
    npm install grunt-cli
+   grunt build
    grunt war
    cp $LOCAL_SOURCE_DIR/dist/*.war /usr/local/tomcat/webapps
 
