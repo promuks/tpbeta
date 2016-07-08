@@ -14,7 +14,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-7.n
 #RUN rpm -q git-all
 
 RUN yum install -y  --enablerepo rhel-7-server-optional-rpms --enablerepo rhel-7-server-rpms   \
-    wget tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
+    wget tar unzip bzip2 bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
     wget http://apache.spinellicreations.com/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz && \
 	tar -xvf apache-tomcat-8.0.36.tar.gz && \
 	rm apache-tomcat*.tar.gz && \
@@ -23,7 +23,6 @@ RUN yum install -y  --enablerepo rhel-7-server-optional-rpms --enablerepo rhel-7
     mkdir -p /opt/app-root/source && chmod -R a+rwX /opt/app-root/source && \
     mkdir -p /opt/s2i/destination && chmod -R a+rwX /opt/s2i/destination && \
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
-RUN yum -y install bzip2
 RUN yum -y install git; yum clean all
 #RUN yum -y update; yum clean all
 RUN yum -y install npm; yum clean all
