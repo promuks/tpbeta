@@ -68,7 +68,7 @@ RUN chmod +x /usr/local/sti/assemble /usr/local/sti/run /usr/local/sti/save-arti
 RUN /usr/local/tomcat/bin/addldapcert.sh
 
 # This default user is created in the openshift/base-centos7 image
-#USER 1001
+USER 1001
 
 # Set the default port for applications built using this image
 EXPOSE 8080
