@@ -24,6 +24,7 @@ RUN yum install -y  --enablerepo rhel-7-server-optional-rpms --enablerepo rhel-7
     mkdir -p /opt/s2i/destination && chmod -R a+rwX /opt/s2i/destination && \
     mkdir -p /opt/app-root/src && chmod -R a+rwX /opt/app-root/src
 RUN yum -y install git; yum clean all
+RUN git config --global url."https://".insteadOf git://
 #RUN yum -y update; yum clean all
 RUN yum -y install npm; yum clean all
 
