@@ -51,9 +51,20 @@ LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
 #LABEL io.openshift.s2i.destination=image:///usr/local/src
 
 COPY .sti/bin/ /usr/local/sti
+ADD scripts/ /usr/local/tomcat/bin
+ADD ldapcert /usr/local/tomcat/certs
 
 RUN chown -R 1001:1001 /opt/openshift
 #RUN chown -R 1001:1001 /usr/local/sti/* 
+
+RUN chown -R 1001:0 /usr/local/tomcat
+
+RUN chmod -R ug+rw /usr/local/tomcat
+
+RUN chmod -R ug+rwx /usr/local/tomcat/bin/addldapcert.sh
+
+RUN /usr/local/tomcat/bin/addldapcert.sh
+
 # This default user is created in the openshift/base-centos7 image
 USER 1001
 
