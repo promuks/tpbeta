@@ -1,0 +1,1 @@
+java -XshowSettings:properties -version 2> /tmp/file1.txt ; cat /tmp/file1.txt | grep java.home | tr -d ' ' | cut -d '=' -f2
