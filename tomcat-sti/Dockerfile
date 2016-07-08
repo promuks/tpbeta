@@ -15,8 +15,8 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-7.n
 
 RUN yum install -y  --enablerepo rhel-7-server-optional-rpms --enablerepo rhel-7-server-rpms   \
     wget tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel && \
-    wget http://apache.mirrors.hoobly.com/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz && \
-	tar -xvf apache-tomcat-8.0.35.tar.gz && \
+    wget http://apache.spinellicreations.com/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz && \
+	tar -xvf apache-tomcat-8.0.36.tar.gz && \
 	rm apache-tomcat*.tar.gz && \
 	mv apache-tomcat* ${CATALINA_HOME} && \	
     mkdir -p /opt/openshift && \
