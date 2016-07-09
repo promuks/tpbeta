@@ -41,6 +41,7 @@
             "strategy": {
                "type": "Docker",
                "dockerStrategy": {
+                  "forcePull": true,
                   "from": {
                      "kind": "ImageStreamTag",
                      "name": "rhel7.2:latest"
