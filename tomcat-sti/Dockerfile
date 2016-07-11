@@ -1,4 +1,4 @@
-# pricingui-tomcat
+# pricingui-tomcat test
 FROM rhel7.2
 
 # TODO: Put the maintainer name in the image metadata
