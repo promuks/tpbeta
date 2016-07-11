@@ -55,7 +55,7 @@ LABEL io.openshift.s2i.scripts-url=image:///usr/local/sti
 COPY .sti/bin/ /usr/local/sti
 ADD scripts/ /usr/local/tomcat/bin
 ADD ldapcert /usr/local/tomcat/certs
-
+RUN useradd -u 1001 testac
 RUN chown -R 1001:1001 /opt/openshift
 #RUN chown -R 1001:1001 /usr/local/sti/* 
 
